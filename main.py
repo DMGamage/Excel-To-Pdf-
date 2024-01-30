@@ -11,12 +11,14 @@ for filepath in filepaths:
     pdf.add_page()
 
     filename = Path(filepath).stem
-    invoice_nr = filename.split("-")[0]
+    invoice_nr,date = filename.split("-")
 
     pdf.set_font("Times", size=16, style='B')
+    pdf.cell(w=50, h=8, text=f"invoice_nr: {invoice_nr}",ln=1)
 
-    # Use the variable invoice_nr instead of the string "invoice_nr."
-    pdf.cell(w=50, h=8, text=f"invoice_nr-{invoice_nr}")
+    pdf.set_font("Times", size=16, style='B')
+    pdf.cell(w=50, h=8, text=f"Date: {date}")
+
     pdf.output(f"PDFs/{filename}.pdf", "F")
 
 # Save or display the PDFs as needed
